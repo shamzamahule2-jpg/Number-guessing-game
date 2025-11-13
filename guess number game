@@ -1,0 +1,50 @@
+def number_guessing_game():
+    # Generate a random number between 0 and 10
+    number_to_guess = random.randint(0, 20)
+
+    # Initialize the number of attempts
+    attempts = 0
+    max_attempts = 10
+
+    print("Welcome to the number guessing game!")
+    print("I'm thinking of a number between 0 and 10.")
+    print(f"You have {max_attempts} attempts to guess the number.")
+
+    while attempts < max_attempts:
+        try:
+            # Get the user's guess
+            guess = int(input("Enter your guess: "))
+
+            # Check if the guess is in the valid range
+            if guess < 0 or guess > 20:
+                print("Error: Please enter a number between 0 and 10.")
+                continue
+
+            # Increment the number of attempts
+            attempts += 1
+
+            # Check if the guess is correct
+            if guess == number_to_guess:
+                print(f"Congratulations! You guessed the number in {attempts} attempts.")
+                return
+            elif guess < number_to_guess:
+                print("Too low! Try again.")
+            else:
+                print("Too high! Try again.")
+
+            # Print the remaining attempts
+            remaining_attempts = max_attempts - attempts
+            if remaining_attempts > 0:
+                print(f"You have {remaining_attempts} attempts left.")
+
+        except ValueError:
+            print("Error: Invalid input. Please enter a number.")
+
+    # If the user runs out of attempts, reveal the number
+    print(f"Sorry, you didn't guess the number. The number was {number_to_guess}.")
+
+def main():
+    number_guessing_game()
+
+if __name__ == "__main__":
+    main()
